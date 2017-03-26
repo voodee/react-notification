@@ -21,8 +21,8 @@ export default class Notification extends Component {
 
     add( notification ) {
         const _notification = defaultValue
-            .merge( Map(notification) )
-            .merge( Map({uid: ++this.uid}));
+            .merge( Map({uid: ++this.uid}))
+            .merge( Map(notification) );
 
         // validation position
         if ( !positions.includes( _notification.get('position') )) {
@@ -31,16 +31,24 @@ export default class Notification extends Component {
 
         // validation level
         if ( !levels.get( _notification.get('level') )) {
-            throw new Error('notification level unsupported')
+            throw new Error(`notification level "${ _notification.get('level') }" unsupported`)
         }
 
         const notifications = this.state.notifications.push(_notification);
         this.setState({notifications})
     }
 
-    _removeItem(uid) {
+    remove(uid) {
         this.setState({
-            notifications: this.state.notifications.filter(notification => notification.get('uid') !== uid)
+            notifications: this.state.notifications.filter(notification => {
+                if (notification.get('uid') === uid) {
+                    if (notification.get('onRemove')) {
+                        notification.get('onRemove')(notification)
+                    }
+                    return false
+                }
+                return true
+            })
         })
     };
 
@@ -61,7 +69,7 @@ export default class Notification extends Component {
                         <NotificationItem
                             key             = {notification.get('uid')}
                             notification    = {notification}
-                            onRemove        = {this._removeItem.bind(this, notification.get('uid'))}
+                            onRemove        = {this.remove.bind(this, notification.get('uid'))}
                         />
                     )}
                 </div>

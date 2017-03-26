@@ -111,7 +111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(Notification, [{
 	        key: 'add',
 	        value: function add(notification) {
-	            var _notification = _constants.defaultValue.merge((0, _immutable.Map)(notification)).merge((0, _immutable.Map)({ uid: ++this.uid }));
+	            var _notification = _constants.defaultValue.merge((0, _immutable.Map)({ uid: ++this.uid })).merge((0, _immutable.Map)(notification));
 	
 	            // validation position
 	            if (!_constants.positions.includes(_notification.get('position'))) {
@@ -120,18 +120,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	            // validation level
 	            if (!_constants.levels.get(_notification.get('level'))) {
-	                throw new Error('notification level unsupported');
+	                throw new Error('notification level "' + _notification.get('level') + '" unsupported');
 	            }
 	
 	            var notifications = this.state.notifications.push(_notification);
 	            this.setState({ notifications: notifications });
 	        }
 	    }, {
-	        key: '_removeItem',
-	        value: function _removeItem(uid) {
+	        key: 'remove',
+	        value: function remove(uid) {
 	            this.setState({
 	                notifications: this.state.notifications.filter(function (notification) {
-	                    return notification.get('uid') !== uid;
+	                    if (notification.get('uid') === uid) {
+	                        if (notification.get('onRemove')) {
+	                            notification.get('onRemove')(notification);
+	                        }
+	                        return false;
+	                    }
+	                    return true;
 	                })
 	            });
 	        }
@@ -157,7 +163,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                        return _react2.default.createElement(_Item2.default, {
 	                            key: notification.get('uid'),
 	                            notification: notification,
-	                            onRemove: _this2._removeItem.bind(_this2, notification.get('uid'))
+	                            onRemove: _this2.remove.bind(_this2, notification.get('uid'))
 	                        });
 	                    })
 	                );
