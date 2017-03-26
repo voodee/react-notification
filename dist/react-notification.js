@@ -75,9 +75,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _reactCssModules2 = _interopRequireDefault(_reactCssModules);
 	
-	var _Constants = __webpack_require__(53);
+	var _constants = __webpack_require__(54);
 	
-	var _Item = __webpack_require__(54);
+	var _Item = __webpack_require__(53);
 	
 	var _Item2 = _interopRequireDefault(_Item);
 	
@@ -111,15 +111,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(Notification, [{
 	        key: 'add',
 	        value: function add(notification) {
-	            var _notification = _Constants.defaultValue.merge((0, _immutable.Map)(notification)).merge((0, _immutable.Map)({ uid: ++this.uid }));
+	            var _notification = _constants.defaultValue.merge((0, _immutable.Map)(notification)).merge((0, _immutable.Map)({ uid: ++this.uid }));
 	
 	            // validation position
-	            if (!_Constants.positions.includes(_notification.get('position'))) {
+	            if (!_constants.positions.includes(_notification.get('position'))) {
 	                throw new Error('notification position "' + _notification.get('position') + '" unsupported');
 	            }
 	
 	            // validation level
-	            if (!_Constants.levels.get(_notification.get('level'))) {
+	            if (!_constants.levels.get(_notification.get('level'))) {
 	                throw new Error('notification level unsupported');
 	            }
 	
@@ -143,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            // if ( ! this.state.notifications.size ) return null;
 	
 	            // Group by position
-	            var notifications = _Constants.positions.valueSeq().map(function (position) {
+	            var notifications = _constants.positions.valueSeq().map(function (position) {
 	                var _notifications = _this2.state.notifications.filter(function (notification) {
 	                    return position === notification.get('position');
 	                });
@@ -6854,63 +6854,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	exports.defaultValue = exports.animationTiming = exports.animationType = exports.levels = exports.positions = undefined;
-	
-	var _immutable = __webpack_require__(19);
-	
-	var positions = exports.positions = (0, _immutable.Map)({
-	    topLeft: 'top-left',
-	    topRight: 'top-right',
-	    topCenter: 'top-center',
-	    bottomLeft: 'bottom-left',
-	    bottomRight: 'bottom-right',
-	    bottomCenter: 'bottom-center'
-	});
-	
-	var levels = exports.levels = (0, _immutable.Map)({
-	    success: 'success',
-	    error: 'error',
-	    warning: 'warning',
-	    info: 'info',
-	    default: 'default'
-	});
-	
-	var animationType = exports.animationType = (0, _immutable.Map)({
-	    ease: 'ease',
-	    easeIn: 'ease-in',
-	    easeOut: 'ease-out',
-	    easeInOut: 'ease-in-out',
-	    linear: 'linear'
-	});
-	
-	var animationTiming = exports.animationTiming = (0, _immutable.Map)({
-	    none: '0',
-	    fast: '300',
-	    normal: '500',
-	    slow: '1000'
-	});
-	
-	var defaultValue = exports.defaultValue = (0, _immutable.Map)({
-	    message: '',
-	    level: levels.get('default'),
-	    position: positions.get('bottomCenter'),
-	    autoDismiss: 5,
-	    dismissible: true,
-	    animationType: animationType.get('easeIn'),
-	    transitionEnterTimeout: animationTiming.get('normal'),
-	    transitionLeaveTimeout: animationTiming.get('fast'),
-	    closeButton: false
-	});
-
-/***/ },
-/* 54 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
 	exports.default = undefined;
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -7015,6 +6958,63 @@ return /******/ (function(modules) { // webpackBootstrap
 	    notification: _react2.default.PropTypes.instanceOf(_immutable2.default.Map).isRequired
 	};
 	module.exports = exports['default'];
+
+/***/ },
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.defaultValue = exports.animationTiming = exports.animationType = exports.levels = exports.positions = undefined;
+	
+	var _immutable = __webpack_require__(19);
+	
+	var positions = exports.positions = (0, _immutable.Map)({
+	    topLeft: 'top-left',
+	    topRight: 'top-right',
+	    topCenter: 'top-center',
+	    bottomLeft: 'bottom-left',
+	    bottomRight: 'bottom-right',
+	    bottomCenter: 'bottom-center'
+	});
+	
+	var levels = exports.levels = (0, _immutable.Map)({
+	    success: 'success',
+	    error: 'error',
+	    warning: 'warning',
+	    info: 'info',
+	    default: 'default'
+	});
+	
+	var animationType = exports.animationType = (0, _immutable.Map)({
+	    ease: 'ease',
+	    easeIn: 'ease-in',
+	    easeOut: 'ease-out',
+	    easeInOut: 'ease-in-out',
+	    linear: 'linear'
+	});
+	
+	var animationTiming = exports.animationTiming = (0, _immutable.Map)({
+	    none: '0',
+	    fast: '300',
+	    normal: '500',
+	    slow: '1000'
+	});
+	
+	var defaultValue = exports.defaultValue = (0, _immutable.Map)({
+	    message: '',
+	    level: levels.get('default'),
+	    position: positions.get('bottomCenter'),
+	    autoDismiss: 5,
+	    dismissible: true,
+	    animationType: animationType.get('easeIn'),
+	    transitionEnterTimeout: animationTiming.get('normal'),
+	    transitionLeaveTimeout: animationTiming.get('fast'),
+	    closeButton: false
+	});
 
 /***/ },
 /* 55 */

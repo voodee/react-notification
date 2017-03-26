@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {List, Map} from 'immutable'
 import CSSModules from 'react-css-modules'
 
-import {defaultValue, positions, levels} from './Constants'
+import {defaultValue, positions, levels} from './constants'
 import NotificationItem from './Item'
 
 import styles from './styles.sass'
