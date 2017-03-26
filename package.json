@@ -1,0 +1,62 @@
+{
+  "name": "react-notification",
+  "version": "0.0.1",
+  "description": "Simple React notification",
+  "main": "dist/react-notification.js",
+  "repository": {
+    "type": "git",
+    "url": "voodee/react-notification"
+  },
+  "scripts": {
+    "test": "karma start --single-run",
+    "build:umd": "cross-env NODE_ENV=production webpack",
+    "build": "npm run test && rimraf dist && npm run build:umd"
+  },
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.4.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "chai": "^3.5.0",
+    "cross-env": "^3.2.4",
+    "css-loader": "0.26.1",
+    "karma": "^0.13.22",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "0.2.3",
+    "karma-cli": "0.1.2",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
+    "karma-firefox-launcher": "0.1.7",
+    "karma-mocha": "0.2.2",
+    "karma-nyan-reporter": "0.2.4",
+    "karma-sinon-chai": "1.2.0",
+    "karma-webpack": "1.7.0",
+    "mocha": "2.4.5",
+    "node-sass": "^4.5.0",
+    "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "resolve-url-loader": "^2.0.2",
+    "rimraf": "^2.6.1",
+    "sass-loader": "^6.0.3",
+    "sinon": "1.17.3",
+    "sinon-chai": "2.8.0",
+    "style-loader": "^0.14.1",
+    "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "react-css-modules": "^4.1.0",
+    "react-icons": "^2.2.3"
+  }
+}
