@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _immutable = __webpack_require__(25);
+	var _immutable = __webpack_require__(19);
 	
 	var _reactCssModules = __webpack_require__(47);
 	
@@ -475,7 +475,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isSymbol = __webpack_require__(24);
+	var isSymbol = __webpack_require__(25);
 	
 	/** Used as references for various `Number` constants. */
 	var INFINITY = 1 / 0;
@@ -573,7 +573,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var isFunction = __webpack_require__(17),
-	    isLength = __webpack_require__(23);
+	    isLength = __webpack_require__(24);
 	
 	/**
 	 * Checks if `value` is array-like. A value is considered array-like if it's
@@ -695,196 +695,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var getNative = __webpack_require__(5),
-	    root = __webpack_require__(2);
-	
-	/* Built-in method references that are verified to be native. */
-	var Map = getNative(root, 'Map');
-	
-	module.exports = Map;
-
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var mapCacheClear = __webpack_require__(129),
-	    mapCacheDelete = __webpack_require__(130),
-	    mapCacheGet = __webpack_require__(131),
-	    mapCacheHas = __webpack_require__(132),
-	    mapCacheSet = __webpack_require__(133);
-	
-	/**
-	 * Creates a map cache object to store key-value pairs.
-	 *
-	 * @private
-	 * @constructor
-	 * @param {Array} [entries] The key-value pairs to cache.
-	 */
-	function MapCache(entries) {
-	  var index = -1,
-	      length = entries == null ? 0 : entries.length;
-	
-	  this.clear();
-	  while (++index < length) {
-	    var entry = entries[index];
-	    this.set(entry[0], entry[1]);
-	  }
-	}
-	
-	// Add methods to `MapCache`.
-	MapCache.prototype.clear = mapCacheClear;
-	MapCache.prototype['delete'] = mapCacheDelete;
-	MapCache.prototype.get = mapCacheGet;
-	MapCache.prototype.has = mapCacheHas;
-	MapCache.prototype.set = mapCacheSet;
-	
-	module.exports = MapCache;
-
-
-/***/ },
-/* 21 */
-/***/ function(module, exports) {
-
-	/** Used as references for various `Number` constants. */
-	var MAX_SAFE_INTEGER = 9007199254740991;
-	
-	/** Used to detect unsigned integer values. */
-	var reIsUint = /^(?:0|[1-9]\d*)$/;
-	
-	/**
-	 * Checks if `value` is a valid array-like index.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
-	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
-	 */
-	function isIndex(value, length) {
-	  length = length == null ? MAX_SAFE_INTEGER : length;
-	  return !!length &&
-	    (typeof value == 'number' || reIsUint.test(value)) &&
-	    (value > -1 && value % 1 == 0 && value < length);
-	}
-	
-	module.exports = isIndex;
-
-
-/***/ },
-/* 22 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var isArray = __webpack_require__(1),
-	    isSymbol = __webpack_require__(24);
-	
-	/** Used to match property names within property paths. */
-	var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
-	    reIsPlainProp = /^\w*$/;
-	
-	/**
-	 * Checks if `value` is a property name and not a property path.
-	 *
-	 * @private
-	 * @param {*} value The value to check.
-	 * @param {Object} [object] The object to query keys on.
-	 * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
-	 */
-	function isKey(value, object) {
-	  if (isArray(value)) {
-	    return false;
-	  }
-	  var type = typeof value;
-	  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
-	      value == null || isSymbol(value)) {
-	    return true;
-	  }
-	  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
-	    (object != null && value in Object(object));
-	}
-	
-	module.exports = isKey;
-
-
-/***/ },
-/* 23 */
-/***/ function(module, exports) {
-
-	/** Used as references for various `Number` constants. */
-	var MAX_SAFE_INTEGER = 9007199254740991;
-	
-	/**
-	 * Checks if `value` is a valid array-like length.
-	 *
-	 * **Note:** This method is loosely based on
-	 * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.0.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
-	 * @example
-	 *
-	 * _.isLength(3);
-	 * // => true
-	 *
-	 * _.isLength(Number.MIN_VALUE);
-	 * // => false
-	 *
-	 * _.isLength(Infinity);
-	 * // => false
-	 *
-	 * _.isLength('3');
-	 * // => false
-	 */
-	function isLength(value) {
-	  return typeof value == 'number' &&
-	    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
-	}
-	
-	module.exports = isLength;
-
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var baseGetTag = __webpack_require__(6),
-	    isObjectLike = __webpack_require__(7);
-	
-	/** `Object#toString` result references. */
-	var symbolTag = '[object Symbol]';
-	
-	/**
-	 * Checks if `value` is classified as a `Symbol` primitive or object.
-	 *
-	 * @static
-	 * @memberOf _
-	 * @since 4.0.0
-	 * @category Lang
-	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
-	 * @example
-	 *
-	 * _.isSymbol(Symbol.iterator);
-	 * // => true
-	 *
-	 * _.isSymbol('abc');
-	 * // => false
-	 */
-	function isSymbol(value) {
-	  return typeof value == 'symbol' ||
-	    (isObjectLike(value) && baseGetTag(value) == symbolTag);
-	}
-	
-	module.exports = isSymbol;
-
-
-/***/ },
-/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -5868,6 +5678,196 @@ return /******/ (function(modules) { // webpackBootstrap
 	}));
 
 /***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var getNative = __webpack_require__(5),
+	    root = __webpack_require__(2);
+	
+	/* Built-in method references that are verified to be native. */
+	var Map = getNative(root, 'Map');
+	
+	module.exports = Map;
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var mapCacheClear = __webpack_require__(129),
+	    mapCacheDelete = __webpack_require__(130),
+	    mapCacheGet = __webpack_require__(131),
+	    mapCacheHas = __webpack_require__(132),
+	    mapCacheSet = __webpack_require__(133);
+	
+	/**
+	 * Creates a map cache object to store key-value pairs.
+	 *
+	 * @private
+	 * @constructor
+	 * @param {Array} [entries] The key-value pairs to cache.
+	 */
+	function MapCache(entries) {
+	  var index = -1,
+	      length = entries == null ? 0 : entries.length;
+	
+	  this.clear();
+	  while (++index < length) {
+	    var entry = entries[index];
+	    this.set(entry[0], entry[1]);
+	  }
+	}
+	
+	// Add methods to `MapCache`.
+	MapCache.prototype.clear = mapCacheClear;
+	MapCache.prototype['delete'] = mapCacheDelete;
+	MapCache.prototype.get = mapCacheGet;
+	MapCache.prototype.has = mapCacheHas;
+	MapCache.prototype.set = mapCacheSet;
+	
+	module.exports = MapCache;
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	/** Used as references for various `Number` constants. */
+	var MAX_SAFE_INTEGER = 9007199254740991;
+	
+	/** Used to detect unsigned integer values. */
+	var reIsUint = /^(?:0|[1-9]\d*)$/;
+	
+	/**
+	 * Checks if `value` is a valid array-like index.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+	 */
+	function isIndex(value, length) {
+	  length = length == null ? MAX_SAFE_INTEGER : length;
+	  return !!length &&
+	    (typeof value == 'number' || reIsUint.test(value)) &&
+	    (value > -1 && value % 1 == 0 && value < length);
+	}
+	
+	module.exports = isIndex;
+
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var isArray = __webpack_require__(1),
+	    isSymbol = __webpack_require__(25);
+	
+	/** Used to match property names within property paths. */
+	var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+	    reIsPlainProp = /^\w*$/;
+	
+	/**
+	 * Checks if `value` is a property name and not a property path.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @param {Object} [object] The object to query keys on.
+	 * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+	 */
+	function isKey(value, object) {
+	  if (isArray(value)) {
+	    return false;
+	  }
+	  var type = typeof value;
+	  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
+	      value == null || isSymbol(value)) {
+	    return true;
+	  }
+	  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
+	    (object != null && value in Object(object));
+	}
+	
+	module.exports = isKey;
+
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	/** Used as references for various `Number` constants. */
+	var MAX_SAFE_INTEGER = 9007199254740991;
+	
+	/**
+	 * Checks if `value` is a valid array-like length.
+	 *
+	 * **Note:** This method is loosely based on
+	 * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+	 * @example
+	 *
+	 * _.isLength(3);
+	 * // => true
+	 *
+	 * _.isLength(Number.MIN_VALUE);
+	 * // => false
+	 *
+	 * _.isLength(Infinity);
+	 * // => false
+	 *
+	 * _.isLength('3');
+	 * // => false
+	 */
+	function isLength(value) {
+	  return typeof value == 'number' &&
+	    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+	}
+	
+	module.exports = isLength;
+
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var baseGetTag = __webpack_require__(6),
+	    isObjectLike = __webpack_require__(7);
+	
+	/** `Object#toString` result references. */
+	var symbolTag = '[object Symbol]';
+	
+	/**
+	 * Checks if `value` is classified as a `Symbol` primitive or object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+	 * @example
+	 *
+	 * _.isSymbol(Symbol.iterator);
+	 * // => true
+	 *
+	 * _.isSymbol('abc');
+	 * // => false
+	 */
+	function isSymbol(value) {
+	  return typeof value == 'symbol' ||
+	    (isObjectLike(value) && baseGetTag(value) == symbolTag);
+	}
+	
+	module.exports = isSymbol;
+
+
+/***/ },
 /* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -6113,7 +6113,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Symbol = __webpack_require__(9),
 	    arrayMap = __webpack_require__(69),
 	    isArray = __webpack_require__(1),
-	    isSymbol = __webpack_require__(24);
+	    isSymbol = __webpack_require__(25);
 	
 	/** Used as references for various `Number` constants. */
 	var INFINITY = 1 / 0;
@@ -6154,7 +6154,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var isArray = __webpack_require__(1),
-	    isKey = __webpack_require__(22),
+	    isKey = __webpack_require__(23),
 	    stringToPath = __webpack_require__(153),
 	    toString = __webpack_require__(46);
 	
@@ -6856,7 +6856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.defaultValue = exports.animationTiming = exports.animationType = exports.levels = exports.positions = undefined;
 	
-	var _immutable = __webpack_require__(25);
+	var _immutable = __webpack_require__(19);
 	
 	var positions = exports.positions = (0, _immutable.Map)({
 	    topLeft: 'top-left',
@@ -6920,6 +6920,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _react = __webpack_require__(4);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _immutable = __webpack_require__(19);
+	
+	var _immutable2 = _interopRequireDefault(_immutable);
 	
 	var _reactCssModules = __webpack_require__(47);
 	
@@ -7007,7 +7011,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	
 	NotificationItem.propTypes = {
-	    onRemove: _react2.default.PropTypes.func
+	    onRemove: _react2.default.PropTypes.func.isRequired,
+	    notification: _react2.default.PropTypes.instanceOf(_immutable2.default.Map).isRequired
 	};
 	module.exports = exports['default'];
 
@@ -7365,7 +7370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var MapCache = __webpack_require__(20),
+	var MapCache = __webpack_require__(21),
 	    setCacheAdd = __webpack_require__(141),
 	    setCacheHas = __webpack_require__(142);
 	
@@ -7482,7 +7487,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    isArguments = __webpack_require__(43),
 	    isArray = __webpack_require__(1),
 	    isBuffer = __webpack_require__(44),
-	    isIndex = __webpack_require__(21),
+	    isIndex = __webpack_require__(22),
 	    isTypedArray = __webpack_require__(45);
 	
 	/** Used for built-in method references. */
@@ -8032,7 +8037,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var baseGetTag = __webpack_require__(6),
-	    isLength = __webpack_require__(23),
+	    isLength = __webpack_require__(24),
 	    isObjectLike = __webpack_require__(7);
 	
 	/** `Object#toString` result references. */
@@ -8201,7 +8206,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var baseIsEqual = __webpack_require__(33),
 	    get = __webpack_require__(159),
 	    hasIn = __webpack_require__(160),
-	    isKey = __webpack_require__(22),
+	    isKey = __webpack_require__(23),
 	    isStrictComparable = __webpack_require__(40),
 	    matchesStrictComparable = __webpack_require__(41),
 	    toKey = __webpack_require__(13);
@@ -9051,7 +9056,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var DataView = __webpack_require__(59),
-	    Map = __webpack_require__(19),
+	    Map = __webpack_require__(20),
 	    Promise = __webpack_require__(61),
 	    Set = __webpack_require__(62),
 	    WeakMap = __webpack_require__(65),
@@ -9136,8 +9141,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var castPath = __webpack_require__(35),
 	    isArguments = __webpack_require__(43),
 	    isArray = __webpack_require__(1),
-	    isIndex = __webpack_require__(21),
-	    isLength = __webpack_require__(23),
+	    isIndex = __webpack_require__(22),
+	    isLength = __webpack_require__(24),
 	    toKey = __webpack_require__(13);
 	
 	/**
@@ -9350,7 +9355,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var eq = __webpack_require__(14),
 	    isArrayLike = __webpack_require__(16),
-	    isIndex = __webpack_require__(21),
+	    isIndex = __webpack_require__(22),
 	    isObject = __webpack_require__(3);
 	
 	/**
@@ -9572,7 +9577,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Hash = __webpack_require__(60),
 	    ListCache = __webpack_require__(8),
-	    Map = __webpack_require__(19);
+	    Map = __webpack_require__(20);
 	
 	/**
 	 * Removes all key-value entries from the map.
@@ -10099,8 +10104,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	var ListCache = __webpack_require__(8),
-	    Map = __webpack_require__(19),
-	    MapCache = __webpack_require__(20);
+	    Map = __webpack_require__(20),
+	    MapCache = __webpack_require__(21);
 	
 	/** Used as the size to enable large array optimizations. */
 	var LARGE_ARRAY_SIZE = 200;
@@ -10610,7 +10615,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var MapCache = __webpack_require__(20);
+	var MapCache = __webpack_require__(21);
 	
 	/** Error message constants. */
 	var FUNC_ERROR_TEXT = 'Expected a function';
@@ -10691,7 +10696,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var baseProperty = __webpack_require__(89),
 	    basePropertyDeep = __webpack_require__(90),
-	    isKey = __webpack_require__(22),
+	    isKey = __webpack_require__(23),
 	    toKey = __webpack_require__(13);
 	
 	/**

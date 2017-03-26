@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Immutable from 'immutable'
 import CSSModules from 'react-css-modules'
 import MdCloseIcon from 'react-icons/md/close'
 
@@ -63,7 +64,7 @@ export default class NotificationItem extends Component {
 
 
 NotificationItem.propTypes = {
-    onRemove: React.PropTypes.func
+    onRemove: React.PropTypes.func.isRequired,
+    notification: React.PropTypes.instanceOf(Immutable.Map).isRequired
 };
-
 
