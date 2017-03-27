@@ -6,9 +6,6 @@ This component is available as CommonJS and UMD module. Install via NPM running:
 
 `npm i https://github.com/voodee/react-notification/tarball/master --save`
 
-Colons can be used to align columns.
-
-
 ## Using
 Here is a basic example:
 ```js
