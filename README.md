@@ -1,10 +1,10 @@
 # React notification
-[![Build Status](https://travis-ci.org/voodee/react-notification.svg?branch=master)](https://travis-ci.org/voodee/react-notification) [![peerDependencies Status](https://david-dm.org/voodee/react-notification/peer-status.svg)](https://david-dm.org/voodee/react-notification?type=peer) [![devDependencies Status](https://david-dm.org/voodee/react-notification/dev-status.svg)](https://david-dm.org/voodee/react-notification?type=dev) [![peerDependencies Status](https://david-dm.org/voodee/react-notification/peer-status.svg)](https://david-dm.org/voodee/react-notification?type=peer) [![Coverage Status](https://coveralls.io/repos/github/voodee/react-notification/badge.svg?branch=master)](https://coveralls.io/github/voodee/react-notification?branch=master)
+[![Build Status](https://travis-ci.org/voodee/react-notifications.svg?branch=master)](https://travis-ci.org/voodee/react-notifications) [![peerDependencies Status](https://david-dm.org/voodee/react-notifications/peer-status.svg)](https://david-dm.org/voodee/react-notifications?type=peer) [![devDependencies Status](https://david-dm.org/voodee/react-notifications/dev-status.svg)](https://david-dm.org/voodee/react-notifications?type=dev) [![peerDependencies Status](https://david-dm.org/voodee/react-notifications/peer-status.svg)](https://david-dm.org/voodee/react-notifications?type=peer) [![Coverage Status](https://coveralls.io/repos/github/voodee/react-notifications/badge.svg?branch=master)](https://coveralls.io/github/voodee/react-notifications?branch=master)
 
 ## Installing
 This component is available as CommonJS and UMD module. Install via NPM running:
 
-`npm i https://github.com/voodee/react-notification/tarball/master --save`
+`npm i https://github.com/voodee/react-notifications/tarball/master --save`
 
 ## Using
 Here is a basic example:
@@ -12,7 +12,7 @@ Here is a basic example:
 const
     React           = require('react'),
     ReactDOM        = require('react-dom'),
-    Notification    = require('react-notification');
+    Notification    = require('react-notifications');
 
 class MyComponent extends React.Component {
 
