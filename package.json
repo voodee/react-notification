@@ -1,5 +1,5 @@
 {
-  "name": "react-notifications",
+  "name": "react-notification",
   "version": "0.0.2",
   "description": "Simple React notification",
   "main": "dist/react-notification.js",
