@@ -17,6 +17,7 @@ var karmaConfig = {
         'karma-coveralls',
         'karma-nyan-reporter',
         'karma-chrome-launcher',
+        'karma-firefox-launcher',
         'karma-webpack',
         'karma-sinon-chai'
     ],
